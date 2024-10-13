@@ -2,13 +2,13 @@ import tkinter as t
 from tkinter import ttk as tt
 '''
 La gerarchia dei widget 
-I widget sono disposti in una gerarchia. L'etichetta e il pulsante erano contenuti in un contenitore, 
+I widget sono disposti in una gerarchia. L'Nome e il pulsante erano contenuti in un contenitore, 
 che a sua volta è contenuto nella finestra principale. 
 Quando si crea un widget figlio, il suo widget padre viene passato come primo parametro al costruttore del widget. 
 
 Opzioni di configurazione 
 I widget hanno opzioni di configurazione che ne modificano l'aspetto e il comportamento, come il testo da visualizzare 
-in un'etichetta o in un pulsante. Le diverse classi di widget avranno diversi set di opzioni. 
+in un'Nome o in un pulsante. Le diverse classi di widget avranno diversi set di opzioni. 
 La gestione della geometria 
 I widget non vengono aggiunti automaticamente all'interfaccia utente quando vengono creati. Un gestore di geometrie 
 come la griglia controlla la posizione dei widget nell'interfaccia utente. 
@@ -21,11 +21,14 @@ aggiorna.
 
 class MyWindow:
     def __init__(self):
+        distanzaX = 10
+        distanzaY = 10
+        
         # crea la finestra
         self.finestra = t.Tk()
         
         # definisce dimensioni e posizione
-        self.finestra.geometry("430x250+1000+500")
+        self.finestra.geometry("355x230+1000+500")
         
         # configura la finestra
         self.finestra.configure(bg="grey")
@@ -34,8 +37,11 @@ class MyWindow:
         self.finestra.title("Finestra 1")
         
         # crea i widget e li configura
-        etichetta = t.Label(text="Nome", background="#ff1144")
-        nome = t.Entry(text="Scrivi il nome")
+        frame = t.Frame(self.finestra)
+        
+        etichettaNome = t.Label(frame, text="Nome", background="#ff1144", width=5)
+        nome = t.Entry(frame, text="Scrivi il nome", background="#77ffaa", width=25)
+        
         pulsante = t.Button(text="Invia")
         
         # listbox
@@ -56,12 +62,15 @@ class MyWindow:
         bocciato = t.Checkbutton(text="bocciato", variable= bocc)
         
         # posiziona i widget attacca alla finestra
-        etichetta.grid(row=0,column=0, sticky="E")
-        nome.grid(row=0,column=1)
-        indirizzi.grid(row=1,column=0, pady=15, padx=15)
-        sezioni.grid(row=1,column=1, pady=15, padx=5, sticky="NW")
-        promosso.grid(row=3,column=0)
-        bocciato.grid(row=3,column=1)
+        etichettaNome.grid(row=0,column=0, sticky="E", padx=5)
+        nome.grid(row=0,column=1, sticky="W")
+       
+        frame.grid(row=0,column=0, padx=distanzaX, pady=distanzaY, columnspan=2)        
+        indirizzi.grid(row=1,column=0, pady=distanzaY, padx=distanzaX, sticky="NW")
+        sezioni.grid(row=1,column=1, pady=distanzaY, padx=distanzaX, sticky="NW")
+        promosso.grid(row=3,column=0, sticky="W", padx=distanzaX)
+        bocciato.grid(row=3,column=1, sticky="W")
+        
         bocciato.deselect()
 
         pulsante.grid(row=3,column=2, sticky="S", padx=20)
