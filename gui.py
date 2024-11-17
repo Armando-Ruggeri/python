@@ -28,7 +28,7 @@ class MyWindow:
         self.finestra = t.Tk()
         
         # definisce dimensioni e posizione
-        self.finestra.geometry("355x230+1000+500")
+        self.finestra.geometry("450x300+1000+500")
         
         # configura la finestra
         self.finestra.configure(bg="grey")
@@ -42,40 +42,52 @@ class MyWindow:
         etichettaNome = t.Label(frame, text="Nome", background="#ff1144", width=5)
         nome = t.Entry(frame, text="Scrivi il nome", background="#77ffaa", width=25)
         
-        pulsante = t.Button(text="Invia")
+        # creazione pulsante e definizione azione evento (callback)
+        pulsante = t.Button(text="Stampa Sezione", command=self.stampaSezione)
+        pulsante2 = t.Button(text="Stampa Indirizzo", command=self.stampaIndirizzo)
         
         # listbox
-        indirizzi = t.Listbox(height = 5)
-        indirizzi.insert(1, "Informatica")
-        indirizzi.insert(3, "Biotecnologie")
-        indirizzi.insert(2, "Economico")
+        self.indirizzi = t.Listbox(height = 5)
+        self.indirizzi.insert(1, "Informatica")
+        self.indirizzi.insert(3, "Biotecnologie")
+        self.indirizzi.insert(2, "Economico")
         
-        # combobox
-        scelta = t.StringVar()
-        sezioni= tt.Combobox(self.finestra, textvariable = scelta, width=3)
-        sezioni["values"] = ["A", "B", "C", "D"]
+        # combobox e variabili associate
+        self.scelta = t.StringVar()
+        self.sezioni= tt.Combobox(self.finestra, textvariable = self.scelta, width=3)
+        self.sezioni["values"] = ["A", "B", "C", "D"]
         
-        # pulsanti di controllo
-        prom = t.StringVar()
-        bocc = t.StringVar()
-        promosso = t.Checkbutton(text="promosso", variable=prom)
-        bocciato = t.Checkbutton(text="bocciato", variable= bocc)
+        # pulsanti di controllo e variabili associate
+        self.prom = t.StringVar()
+        self.bocc = t.StringVar()
+        promosso = t.Checkbutton(text="promosso", variable=self.prom)
+        bocciato = t.Checkbutton(text="bocciato", variable= self.bocc)
         
-        # posiziona i widget attacca alla finestra
+        # posiziona i widget e li attacca alla finestra
         etichettaNome.grid(row=0,column=0, sticky="E", padx=5)
         nome.grid(row=0,column=1, sticky="W")
        
         frame.grid(row=0,column=0, padx=distanzaX, pady=distanzaY, columnspan=2)        
-        indirizzi.grid(row=1,column=0, pady=distanzaY, padx=distanzaX, sticky="NW")
-        sezioni.grid(row=1,column=1, pady=distanzaY, padx=distanzaX, sticky="NW")
+        self.indirizzi.grid(row=1,column=0, pady=distanzaY, padx=distanzaX, sticky="NW")
+        self.sezioni.grid(row=1,column=1, pady=distanzaY, padx=distanzaX, sticky="NW")
         promosso.grid(row=3,column=0, sticky="W", padx=distanzaX)
         bocciato.grid(row=3,column=1, sticky="W")
         
         bocciato.deselect()
 
         pulsante.grid(row=3,column=2, sticky="S", padx=20)
+        pulsante2.grid(row=4,column=2, sticky="S", padx=20)
         
         # avvia il ciclo
         self.finestra.mainloop()
+        
+    def stampaSezione(self):
+        print(self.scelta.get())
+        
+    def stampaIndirizzo(self):
+        selezione = self.indirizzi.curselection()
+        for s in selezione:
+            print(self.indirizzi.get(s))
+
 
 win = MyWindow()
