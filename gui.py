@@ -45,6 +45,8 @@ class MyWindow:
         # creazione pulsante e definizione azione evento (callback)
         pulsante = t.Button(text="Stampa Sezione", command=self.stampaSezione)
         pulsante2 = t.Button(text="Stampa Indirizzo", command=self.stampaIndirizzo)
+        pulsante3 = t.Button(text="Entrambi", command=self.stampaIndirizzo)
+        pulsante3.bind( '<Button-3>', self.click)
         
         # listbox
         self.indirizzi = t.Listbox(height = 5)
@@ -77,7 +79,8 @@ class MyWindow:
 
         pulsante.grid(row=3,column=2, sticky="S", padx=20)
         pulsante2.grid(row=4,column=2, sticky="S", padx=20)
-        
+        pulsante3.grid(row=5,column=2, sticky="S", padx=20)
+         
         # avvia il ciclo
         self.finestra.mainloop()
         
@@ -88,6 +91,9 @@ class MyWindow:
         selezione = self.indirizzi.curselection()
         for s in selezione:
             print(self.indirizzi.get(s))
+            
+    def click(self, event):
+        print("click destro del mouse")
 
 
 win = MyWindow()
