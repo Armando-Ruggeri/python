@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @media screen and (width > 500px) {
+            .container {
+                display: grid;
+                grid-template-columns: 2fr 1fr 1fr;
+                grid-template-rows: 200px 200px 200px 200px;
+                font-size: 4rem;
+            }
+
+            .container>div {
+                border: black solid 2px;
+            }
+
+            .grande {
+                background-color: burlywood;
+            }
+
+            .medi {
+                background-color: cadetblue;
+            }
+
+            .piccoli {
+                background-color: cornflowerblue;
+            }
+        }
+
+        @media screen and (width <= 500px) {
+            .container {
+                display: flex;
+                font-size: 2rem;
+                flex-direction: column;
+                height: 500px;
+            }
+
+            .container>div {
+                border: black solid 2px;
+            }
+
+            .grande {
+                background-color:greenyellow;
+                height: 10px;
+                flex-grow: 4;
+            }
+
+            .medi {
+                background-color:cyan;
+                height: 10px;
+                flex-grow: 3;
+            }
+
+            .piccoli {
+                background-color:hotpink;
+                height: 10px;
+                flex-grow: 2;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="grande">box 1</div>
+        <div class="medi">box 2</div>
+        <div class="medi">box 3</div>
+        <div class="piccoli">box 4</div>
+        <div class="piccoli">box 5</div>
+        <div class="piccoli">box 6</div>
+    </div>
+</body>
+
+</html>
