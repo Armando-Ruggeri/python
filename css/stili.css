@@ -1,0 +1,55 @@
+@media screen and (width > 500px) {
+    .container {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: 200px 200px 200px 200px;
+        font-size: 4rem;
+    }
+
+    .container>div {
+        border: rgb(8, 8, 8) solid 2px;
+    }
+
+    .grande {
+        background-color: rgb(222, 135, 141);
+    }
+
+    .medi {
+        background-color: cadetblue;
+    }
+
+    .piccoli {
+        background-color: cornflowerblue;
+    }
+}
+
+@media screen and (width <= 500px) {
+    .container {
+        display: flex;
+        font-size: 2rem;
+        flex-direction: column;
+        height: 500px;
+    }
+
+    .container>div {
+        border: black solid 2px;
+    }
+
+    .grande {
+        background-color:greenyellow;
+        height: 10px;
+        flex-grow: 4;
+    }
+
+    .medi {
+        background-color:cyan;
+        height: 10px;
+        flex-grow: 3;
+    }
+
+    .piccoli {
+        background-color:hotpink;
+        height: 10px;
+        flex-grow: 2;
+    }
+}
