@@ -1,6 +1,5 @@
 import tkinter as tk
 
-
 class MyWindow (tk.Tk):
     def __init__(self):
         super().__init__()
